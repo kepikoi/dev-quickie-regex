@@ -1,9 +1,11 @@
-%fullheight{
+@import "./variables";
+
+%fullheight {
   height: 100%;
   min-height: 100%;
 }
 
-html,body,#app,#slides{
+html, body, #app, #slides {
   @extend %fullheight;
 }
 
@@ -11,10 +13,11 @@ body, html {
   //overflow: hidden;
 }
 
-body{
+body {
   margin: 0;
+  font-size: 1.4vw;
+  transition: font-size 0.2s ease;
 }
-
 
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;

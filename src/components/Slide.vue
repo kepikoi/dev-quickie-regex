@@ -1,7 +1,7 @@
 <template>
 
     <div class="slide" :class="['slide-'+pageNr, isShown ? 'shown' : 'hidden' ]">
-        <div class="container">
+        <div class="container"  :id="[isShown ? 'current':null]">
             <slot>
             </slot>
         </div>
@@ -9,6 +9,7 @@
             <div class="prev button" @click="_prevPage()">prev</div>
             <div class="nr">
                 {{pageNr}}
+
             </div>
             <div class="next button" @click="_nextPage()">next</div>
 
@@ -32,7 +33,7 @@
                 this.prevPage();
             }
         }),
-        computed: Object.assign({},mapGetters(['page']),{
+        computed: Object.assign({}, mapGetters(['page']), {
             isShown(){
                 return this.page === this.pageNr;
             },

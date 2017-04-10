@@ -13,6 +13,7 @@ require('smoothscroll-polyfill').polyfill();
 //jquery
 window.jQuery = require('jquery');
 
+
 /* eslint-disable no-new */
 new Vue({
     el: '#app',
@@ -21,3 +22,6 @@ new Vue({
     template: '<App/>',
     components: {App}
 });
+
+import enlargeOnResize from './plugins/enlargeonresize';
+// Vue.use(enlargeOnResize);

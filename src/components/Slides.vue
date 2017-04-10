@@ -8,30 +8,41 @@
             <ul>
                 <li>
                     State
-
                 </li>
                 <li>
                     Cool
-
                 </li>
                 <li>
                     Pro-fit
-
                 </li>
             </ul>
 
             <p>
                 Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.
-                 </p>
+            </p>
+
+            <pre>
+                $(document).ready(function() {
+                $('#myselector').change(function(){
+                  $('.statecontent').hide();
+                  $('#' + $(this).val()).show();
+                });
+                });
+            </pre>
+            <p>
+                I'am new to jquery and maybe this is a stupid question but I have searched for an answer just about everywhere without finding one. So, here we go:
+            </p>
 
         </Slide>
         <Slide>
             Slide 2
 
 
+
         </Slide>
         <Slide>
             Slide 3
+
 
 
         </Slide>

@@ -12,6 +12,9 @@ const mutations = {
     [types.SET_PAGE](state, page){
         state.page = page
     },
+    [types.CHANGE_PAGE](state){
+
+    },
     [types.NEXT_PAGE](state){
         state.page++;
     },

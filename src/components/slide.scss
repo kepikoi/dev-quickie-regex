@@ -7,20 +7,21 @@
   .container {
     display: flex;
     flex-direction: column;
-    flex-wrap: wrap;
     align-items: center;
+    justify-content: center;
     h1{
-      flex: 1 100%;
-      align-self: center;
+
     }
     img{
-
+      display: block;
     }
     ul{
 
     }
     p{
       margin: 0 50px
+    }
+    pre{
     }
   }
   .pager {
