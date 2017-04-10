@@ -24,4 +24,4 @@ new Vue({
 });
 
 import enlargeOnResize from './plugins/enlargeonresize';
-// Vue.use(enlargeOnResize);
+Vue.use(enlargeOnResize);

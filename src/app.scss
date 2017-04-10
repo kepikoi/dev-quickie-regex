@@ -5,18 +5,18 @@
   min-height: 100%;
 }
 
-html, body, #app, #slides {
+html, body, #app, #presi {
   @extend %fullheight;
 }
 
 body, html {
-  //overflow: hidden;
+  overflow: hidden;
 }
 
 body {
   margin: 0;
-  font-size: 1.4vw;
-  transition: font-size 0.2s ease;
+  font-size: 12px;
+  transition: font-size 0.4s linear;
 }
 
 #app {

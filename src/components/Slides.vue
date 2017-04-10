@@ -22,51 +22,52 @@
             </p>
 
             <pre>
-                $(document).ready(function() {
-                $('#myselector').change(function(){
-                  $('.statecontent').hide();
-                  $('#' + $(this).val()).show();
-                });
-                });
+$(document).ready(function() {
+    $('#myselector').change(function(){
+        $('.statecontent').hide();
+        $('#' + $(this).val()).show();
+    });
+});
             </pre>
             <p>
                 I'am new to jquery and maybe this is a stupid question but I have searched for an answer just about everywhere without finding one. So, here we go:
             </p>
-
         </Slide>
         <Slide>
-            Slide 2
-
-
-
+            <h1>
+                common tokens
+            </h1>
+           <ul>
+               <li>
+                   <pre>\w</pre> any word character
+               </li>
+               <li>
+                   <pre>\d</pre> any digit
+               </li>
+               <li>
+                   <pre>\s</pre> any whitespace character
+               </li>
+           </ul>
         </Slide>
+
         <Slide>
             Slide 3
-
-
-
         </Slide>
     </div>
 </template>
-
 <script>
     import Slide from '@/components/Slide'
 
     export default {
         name: 'Slides',
-        data () {
-            return {
-                currentPage: 0
-            }
+        data(){
+            return {}
         },
         components: {
             Slide
-        },
-        computed: {}
+        }
     }
 </script>
-
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
     @import "./slides";
 </style>

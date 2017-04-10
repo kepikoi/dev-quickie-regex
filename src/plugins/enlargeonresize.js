@@ -1,68 +1,80 @@
-import {CHANGE_PAGE} from '../store/types';
+const Rx = require("rxjs/Rx");
+
+//max vmax
+const max = 5;
+//vmax resize stepping
+const step = 0.25;
+
 
 export default {
     install (Vue, options) {
 
-        document.addEventListener("DOMContentLoaded", (event) => {
-
+        const fireListener = () => {
             const current = document.getElementById('current');
 
             //do not use the whole window height
-            const getWindowHeight = () => window.innerHeight * 0.8;
-            const getContainerHeight = () => current.offsetHeight;
+            function getBoundsHeight() {
+                return document.getElementById('slides').clientHeight
+            }
 
-            const grow = () => getContainerHeight() < getWindowHeight();
-            //sould be significantly bigger then window height
-            const shrink = () => getContainerHeight() > getWindowHeight();
+            function getContainerHeight() {
+                return current.offsetHeight
+            }
 
-            const resize = (comparisson, factor) => {
+
+            const end = interval => {
+                console.log("clearing interval  ");
+                clearInterval(interval);
+                console.groupEnd("resize")
+            };
+
+            const resize = () => {
                 //max steps per animations
                 let maxFrames = 0;
+                let vmax = 1;
+
+                console.group("resize");
 
                 //start animation
-                let animation = setInterval(() => {
-                    console.log("getWindowHeight", getWindowHeight(), "getContainerHeight", getContainerHeight(),comparisson.name,factor);
-                    let baseSize = parseFloat(jQuery('body').css('font-size'));
+                const interval = setInterval(() => {
+
+                    console.log("getBoundsHeight", getBoundsHeight(), "getContainerHeight", getContainerHeight(), "vmax", vmax);
+
                     if (maxFrames++ > 100) {
-                        //something hangs, kill the animation!
-                        clearInterval(animation)
+                        //something happened.. kill the animation!
+                        end(interval);
                     }
-                    else if (comparisson()) {
-                        //compare & apply factor to font size
-                        baseSize *= factor;
-                        jQuery('body').css('font-size', `${baseSize}px`);
-                    } else {
-                        clearInterval(animation)
-                    }
-                }, 5);
 
+                    vmax += step;
+                    document.getElementById('slides').style.fontSize = `${vmax}vmax`
+
+                    if (getContainerHeight() >= getBoundsHeight()) {
+                        vmax -= step;
+                        document.getElementById('slides').style.fontSize = `${vmax}vmax`
+
+                        end(interval);
+                    }
+                    else if (vmax >= max) {
+                        end(interval);
+                    }
+
+                }, 30)
             };
 
-            const fireListener = () => {
-                if (grow()) {
-                    //grow
-                    resize(grow, 1.2);
-                }
-                else if (shrink()) {
-                    //shrink
-                    resize(shrink, 0.8);
-                }
-            };
+            resize();
+        };
 
-            //on resize
-            window.onresize = () => fireListener();
+        const resizeSource = Rx.Observable.fromEvent(window, 'resize')
+            .debounce(() => Rx.Observable.timer(300));
 
-            //on dom ready
+        const domReadySource = Rx.Observable.fromEvent(document, 'DOMContentLoaded');
+
+        const resizeSubscription = x => {
             fireListener();
+        };
 
-            //on change page
-            // Vue.$store.subscribe(CHANGE_PAGE, () => {
-            //     console.log("df");
-            //     fireListener()
-            // })
-
-        });
-
+        resizeSource.subscribe(resizeSubscription);
+        domReadySource.subscribe(resizeSubscription);
 
     }
 }

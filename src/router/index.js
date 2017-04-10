@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Slides from '@/components/Slides'
+import Presi from '@/components/Presi'
 
 Vue.use(Router)
 
@@ -8,8 +8,8 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'Slides',
-      component: Slides
+      name: 'Presi',
+      component: Presi
     }
   ]
 })

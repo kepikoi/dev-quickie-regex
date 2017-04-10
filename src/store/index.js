@@ -4,6 +4,8 @@ Vue.use(Vuex);
 import * as actions from './actions'
 import * as types from './types';
 
+
+
 const state = {
     page: 1
 };
@@ -11,9 +13,6 @@ const state = {
 const mutations = {
     [types.SET_PAGE](state, page){
         state.page = page
-    },
-    [types.CHANGE_PAGE](state){
-
     },
     [types.NEXT_PAGE](state){
         state.page++;
