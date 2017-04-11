@@ -18,7 +18,9 @@
             Slides,
             Navi
         },
-        computed: {}
+        computed: {
+            //currentSlide: undefined //todo
+        }
     }
 </script>
 

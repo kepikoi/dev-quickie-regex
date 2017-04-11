@@ -4,26 +4,35 @@ Vue.use(Vuex);
 import * as actions from './actions'
 import * as types from './types';
 
-
-
 const state = {
-    page: 1
+    page: 1,
+    currentKeyframe: 0
 };
 
 const mutations = {
     [types.SET_PAGE](state, page){
-        state.page = page
+        state.page = page;
+        state.currentKeyframe = 0;
+    },
+    [types.NEXT_KEYFRAME](state, page){
+        //todo
+        state.currentKeyframe++;
+
     },
     [types.NEXT_PAGE](state){
         state.page++;
+        state.currentKeyframe = 0;
+
     },
     [types.PREV_PAGE](state){
         state.page > 1 ? state.page-- : null;
+        state.currentKeyframe = 0;
     },
 };
 
 const getters = {
     page: state => state.page,
+    currentKeyframe: state => state.currentKeyframe,
 };
 
 export default new Vuex.Store({

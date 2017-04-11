@@ -3,9 +3,6 @@
         <div class="prev button" @click="_prevPage()">prev</div>
         <div class="nr">
             {{pageNr}}
-
-
-
         </div>
         <div class="next button" @click="_nextPage()">next</div>
 
@@ -19,7 +16,7 @@
         data(){
             return {}
         },
-        methods: Object.assign({}, mapActions(['nextPage', 'prevPage']), {
+        methods: Object.assign({}, mapActions(['nextPage', 'prevPage','nextKeyframe']), {
             _nextPage(){
                 this.nextPage();
             },
@@ -37,12 +34,14 @@
         }),
         created()
         {
-            window.addEventListener('keyup', keyboardEvent=>{
-                switch(keyboardEvent.code){
+            window.addEventListener('keyup', keyboardEvent => {
+                switch (keyboardEvent.code) {
                     case  'ArrowLeft':
                         this._prevPage();
                         break;
-                    case'Space':
+                    case'Space': //todo: erst keyframes abspielen
+                       this.nextKeyframe();
+                        break;
                     case  'ArrowRight':
                         this._nextPage();
 

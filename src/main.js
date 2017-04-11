@@ -4,14 +4,15 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import store from './store';
+import './directives/keyframe'
 
 Vue.config.productionTip = true;
 
 //smooth scrolling polyfill
-require('smoothscroll-polyfill').polyfill();
+require('smoothscroll-polyfill').polyfill(); //fixme: not in use currently
 
 //jquery
-window.jQuery = require('jquery');
+window.jQuery = require('jquery');//fixme: not in use?
 
 
 /* eslint-disable no-new */
@@ -24,4 +25,4 @@ new Vue({
 });
 
 import enlargeOnResize from './plugins/enlargeonresize';
-Vue.use(enlargeOnResize);
+//Vue.use(enlargeOnResize);
