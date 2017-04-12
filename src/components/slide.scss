@@ -1,17 +1,43 @@
+@import "../variables";
+
+%matcher {
+  content: "";
+  background-size: 1em 1em;
+  width: 1em;
+  height: 1em;
+  display: inline-block;
+  margin-right: 5px;
+}
+
+%match {
+  background: transparent top center no-repeat url(../assets/match.svg);
+}
+
+%mismatch {
+  background: transparent top center no-repeat url(../assets/match.svg);
+}
+
+%wrap {
+  margin-right: 2rem;
+  margin-left: 2em;
+}
+
 .slide {
   display: flex;
   height: 100%;
 
   flex-direction: column;
 
-  %wrap {
-    margin: 0 2rem;
-  }
   .container {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    height: 100vh;
+    font-size: 3vmin;
+    *[data-keyframe] {
+      transition: opacity 0.5s ease;
+    }
     h1 {
 
     }
@@ -20,14 +46,92 @@
     }
     ul {
 
+      li {
+
+        &.match, &.mismatch {
+          list-style-type: none;
+        }
+        &.match {
+          color: $ci_green;
+        }
+        &.mismatch {
+          color: $ci_red;
+        }
+
+        &.match:before {
+          @extend %matcher;
+          @extend %match;
+        }
+        &.mismatch:before {
+          @extend %matcher;
+          background: transparent top center no-repeat url(../assets/mismatch.svg);
+        }
+      }
+
     }
     p {
       @extend %wrap;
+      &.info:before{
+        @extend %matcher;
+        background: url('../assets/info.svg') top center no-repeat;
+
+      }
+      &.block{
+        border-left: 2px solid;
+        padding-left: 1em;
+      }
     }
     pre {
       padding: 0 1em;
       background-color: rgba(255, 255, 255, 0.3);
       display: inline;
+      font-family: 'Inconsolata', monospace;
+      font-size: 1.6em;
+    }
+    span {
+      &.pre {
+        @extend pre;
+        font-size: 1em;
+
+      }
+      &.mismatch {
+        color: $ci_red;
+
+      }
+      &.match {
+        color: $ci_green;
+
+        &:before {
+          @extend %match;
+          @extend %matcher;
+        }
+      }
+    }
+    b{
+      font-weight: 900;
+      text-transform: uppercase;
+    }
+    table{
+      tr{
+        td{
+          text-align: left;
+          padding: 0 0.5em;
+
+        }
+        th{
+          @extend td;
+          border-bottom: 1px dotted rgba(255,255,255,0.5);
+        }
+      }
+    }
+    .red{
+      color: $ci_red;
+    }
+    .cyan{
+      color: $ci_cyan;
+    }
+    .orange{
+      color: $ci_orange;
     }
   }
 

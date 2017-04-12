@@ -21,8 +21,9 @@ new Vue({
     store,
     router,
     template: '<App/>',
-    components: {App}
+    components: {App},
+
 });
 
 import enlargeOnResize from './plugins/enlargeonresize';
-//Vue.use(enlargeOnResize);
+Vue.use(enlargeOnResize);

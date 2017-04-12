@@ -1,7 +1,7 @@
 <template>
 
     <div class="slide" :class="['slide-'+pageNr, isShown ? 'shown' : 'hidden' ]">
-        <div class="container" :id="[isShown ? 'current':null]">
+        <div class="container" :id="[isShown ? 'current':null]" ref="container">
             <slot>
             </slot>
         </div>
@@ -18,8 +18,7 @@
             return {}
         },
         props: {},
-        methods: {
-        },
+        methods: {},
         computed: Object.assign({}, mapGetters(['page']), {
             isShown(){
                 return this.page === this.pageNr;
@@ -31,10 +30,14 @@
             }
 
         }),
-        created(){
-            /*this.$store.watch((mutation, state) => {
-                this.enableKeyframe(state.currentKeyframe);
-            })*/
+        mounted(){
+         /*   jQuery(this.$el).find('pre').each(() => {
+                const oldPre = jQuery(this);
+                debugger;
+                console.log(oldPre, jQuery(this).text())
+             //   jQuery(this).text(oldPre.replace('/', '<span class="delim">/</span>'))
+            })
+*/
         }
     }
 </script>

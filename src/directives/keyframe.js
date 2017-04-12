@@ -2,8 +2,8 @@ import Vue from 'vue'
 
 Vue.directive('keyframe', {
     bind: (el, bind, vnode) => {
-        el.style.display = 'none';
-        el.setAttribute("data-keyframe",'')
+        el.style.opacity = '0.1';
+        el.setAttribute("data-keyframe",undefined)
     },
     inserted: (el, bind, vnode) => {
         let myKeyframe = undefined;
@@ -20,7 +20,7 @@ Vue.directive('keyframe', {
         });
 
         vnode.context.$store.subscribe((mutation, state) => {
-            el.style.display = state.currentKeyframe >= myKeyframe ? 'block' : 'none';
+            el.style.opacity = state.currentKeyframe >= myKeyframe ? '1' : '0.1';
         })
     },
     update: (el, bind, vnode) => {

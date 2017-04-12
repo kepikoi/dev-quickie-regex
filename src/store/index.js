@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import router from 'vue-router'
 Vue.use(Vuex);
 import * as actions from './actions'
 import * as types from './types';
@@ -22,6 +23,8 @@ const mutations = {
     [types.NEXT_PAGE](state){
         state.page++;
         state.currentKeyframe = 0;
+      //  router.push(state.page)
+
 
     },
     [types.PREV_PAGE](state){
