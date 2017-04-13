@@ -73,7 +73,7 @@
         <Slide>
             <h1>Escapes und besondere Zeichen</h1>
 
-            <pre>\.+\</pre>
+            <pre>/.+/</pre>
             <ul>
                 <li class="match">...</li>
                 <li class="match">Yay!</li>
@@ -82,13 +82,14 @@
                 <span class="pre">.</span> matcht jedes beliebige Zeichen ("Wildcard")
             </p>
 
-            <pre>\\.+\</pre>
+
+            <pre>/\.+/</pre>
             <ul>
                 <li class="match">...</li>
                 <li class="mismatch">Yay!</li>
             </ul>
             <p>
-                <span class="pre">\</span> "escaped" das nachfolgende Zeichen.
+                <span class="pre">\</span> annuliert die syntaktische BEdeutung des nachfolgenden Zeichens ("escaped").
             </p>
 
 
@@ -99,15 +100,17 @@
                 Alle Zeichen die in RegEx besondere Bedeutung haben, müssen escaped werden sie im zu matchenden String vorkommen.
             </p>
             <ul>
-                <li><span class="pre">\\.\</span></li>
-                <li><span class="pre">\\*\</span></li>
-                <li><span class="pre">\\\\</span></li>
-                <li><span class="pre">\\(\|\)\</span></li>
+                <li><span class="pre">\.</span></li>
+                <li><span class="pre">\+</span></li>
+                <li><span class="pre">\/</span></li>
+                <li><span class="pre">\\</span></li>
+                <li><span class="pre">\(\/\)</span></li>
                 <li>...</li>
             </ul>
-            <p>
-                Andernfalls werden sie als Teil der Expression Logik Verstanden und können Syntaxfehler verursachen
+            <p class="info">
+                Andernfalls werden sie als Teil der Logik verstanden und können Syntaxfehler verursachen
             </p>
+
 
         </Slide>
 
@@ -148,16 +151,23 @@
             <p>
                 voranstehedes <span class="pre">^</span> negiert die Bedeutung des Patterns
             </p>
+            <p class="info">das Negierungszeichen darf nur innerhalb der Rage vorkommen</p>
 
         </Slide>
         <Slide>
             <h1>
                 Metacharacters
             </h1>
+
+            <p>
+                "Syntax Sugar" um die Eingaben zu verkürzen
+            </p>
             <ul>
                 <li>
                     <span class="pre">\s</span>
                     whitespace character (" ")
+
+
 
 
 
@@ -174,6 +184,8 @@
 
 
 
+
+
                 </li>
                 <li>
                     <span class="pre">\d</span>
@@ -184,8 +196,12 @@
 
 
 
+
+
                 </li>
-                <li><span class="pre">\b</span> word boundary (z.B. <span class="pre">/\b\w+\b/</span> nur ganze Wörter)
+                <li><span class="pre">\b</span> word boundary
+
+
 
 
 
@@ -196,6 +212,9 @@
 
 
             </ul>
+
+            <p class="info">z.B. <span class="pre">/\b\w+\b/</span> matcht nur ganze Wörter</p>
+
             <p v-keyframe>grossgeschriebene Metacharacter negieren ihre Bedeutung</p>
 
             <ul v-keyframe>
@@ -359,7 +378,7 @@
                 </tr>
             </table>
 
-            <p class="info">nicht zu verwechseln mit dem Negierungszeichen <span class="pre">^</span></p>
+            <p class="info">Anchor nicht zu verwechseln mit dem Negierungszeichen <span class="pre">^</span></p>
 
             <p class="info">man kann beliebige modifier miteinander kombinieren</p>
 
@@ -383,14 +402,14 @@
                 </tr>
                 <tr>
                     <td>
-                        <pre>/^[a-z]{3,}$/im</pre>
+                        <pre>/^[a-z]{3,}$/m</pre>
 
                     </td>
                     <td>
 
                         <ul>
                             <li class="match">zip</li>
-                            <li class="match">Zippers</li>
+                            <li class="match">zippers</li>
                         </ul>
                     </td>
 
@@ -416,7 +435,7 @@
 
         </Slide>
         <Slide>
-            <h1>Weitere Qunatifiers</h1>
+            <h1>Weitere Quantifiers</h1>
 
             <pre>/(very)?\s?(kind)?\s?regards/i</pre>
             <ul>
@@ -449,7 +468,7 @@
 
             <p>
                 neben <span class="pre">+</span> und <span class="pre">{min,max}</span>
-                existieren weitere quantifiers um die Anzahl der zu matchenden Stellen zu bestimmen
+                existieren weitere quantifiers um die Anzahl der zu matchenden Vorkomnisse zu bestimmen
 
             </p>
         </Slide>
@@ -470,6 +489,68 @@
             <p class="info">
                 Die Teilergebnisse der oberen Besipiele sind ihre Hostnames (medium.com)
             </p>
+        </Slide>
+        <Slide>
+            <h1>Lookaheads & Lookbehinds</h1>
+
+            <pre>/&lt;a .+&gt;/&lt;\/a&gt;a&gt;</pre>
+
+            <p class="block">
+
+
+                    &lt;a href="/clickout?regex"&gt;<span class="match">Regex for Dummies </span>&lt;/a&gt; &lt;br&gt; <br>
+
+
+                    &lt;a href="#" alt="vue clickout" @click="clickout()" id="nextchapter"&gt;<span class="match">RegExpress yourself </span>&lt;/a&gt;  &lt;br&gt; <br>
+
+                <span class="mismatch">
+                &lt;a href="https://regex101.com/"&gt;&lt;img src="/regularexpressions101.svg" alt="logo"&gt;&lt;/a&gt;
+                </span>
+            </p>
+
+            <p>
+                Lookaheads erlauben nach einem String zu suchen, dass erst <b>nach</b> einem Pattern vorkommt
+            </p>
+
+
+        </Slide>
+        <Slide>
+            <h1>Lookaheads & Lookbehinds (2)</h1>
+            <table>
+                <tr>
+                    <th>RegEx</th>
+                    <th>Name</th>
+                    <th>Beschreibung</th>
+                </tr>
+                <tr>
+                    <td>/(?=foo)/</td>
+                    <td>Lookahead</td>
+                    <td>Asserts that what immediately follows the current position in the string is foo</td>
+                </tr>
+                <tr>
+                    <td>/(?&lt;=foo)/</td>
+                    <td>Lookbehind</td>
+                    <td> Asserts that what immediately precedes the current position in the string is foo</td>
+                </tr>
+                <tr>
+                    <td>/(?!foo)/</td>
+                    <td>Lookahead</td>
+                    <td>Asserts that what immediately follows the current position in the string is not foo</td>
+                </tr>
+                <tr>
+                    <td>/(?<!foo)/</td>
+                    <td>Lookbehind</td>
+                    <td>Asserts that what immediately precedes the current position in the string is not foo</td>
+                </tr>
+            </table>
+        </Slide>
+        <Slide>
+            <h1>Danke 👋</h1>
+
+            <h2>Weitere Ressourcen:</h2>
+            <ul>
+                <li></li>
+            </ul>
         </Slide>
 
     </div>
