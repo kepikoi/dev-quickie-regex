@@ -82,12 +82,12 @@
             </p>
 
 
-            <pre>/\.+/</pre>
-            <ul>
+            <pre v-keyframe>/\.+/</pre>
+            <ul v-keyframe>
                 <li class="match">...</li>
                 <li class="mismatch">Yay!</li>
             </ul>
-            <p>
+            <p v-keyframe>
                 <span class="pre">\</span> annuliert die syntaktische Bedeutung des nachfolgenden Zeichens ("escaped").
             </p>
 
@@ -170,8 +170,8 @@
                 <li class="match">Was 1 Tag</li>
                 <li class="mismatch">Eine Hand wäscht die Andere</li>
             </ul>
-            <p>Umlaute müssen als Unicode angegeben werden</p>
-            <img src="../assets/umlauts.jpg" width="50%" alt="Umlauts">
+            <p v-keyframe>Umlaute müssen als Unicode angegeben werden</p>
+            <img  src="../assets/umlauts.jpg" width="50%" alt="Umlauts" v-keyframe>
         </Slide>
         <Slide>
             <h1>Ranges (3)</h1>
@@ -347,7 +347,7 @@
                     </td>
 
                 </tr>
-                <tr>
+                <tr v-keyframe>
                     <td>
                         <pre>/^[a-z]{3,}$/m</pre>
 
@@ -361,7 +361,7 @@
                     </td>
 
                 </tr>
-                <tr>
+                <tr v-keyframe>
                     <td>
                         <pre>/^089-[0-9]{6-9}$/m</pre>
 
@@ -399,15 +399,15 @@
                     <td><span class="pre">{}</span></td>
                     <td> n, >n oder >n&ltm </td>
                 </tr>
-                <tr>
+                <tr v-keyframe>
                     <td><span class="pre">+</span></td>
                     <td>1 oder >1</td>
                 </tr>
-                <tr>
+                <tr v-keyframe>
                     <td><span class="pre">*</span></td>
                     <td>0 oder >0</td>
                 </tr>
-                <tr>
+                <tr v-keyframe>
                     <td><span class="pre">?</span></td>
                     <td>0 oder 1</td>
                 </tr>
