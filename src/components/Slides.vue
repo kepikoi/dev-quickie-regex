@@ -29,7 +29,6 @@
                 <b class="cyan">Pattern</b> die Logik / Muster der Expression <br>
                 <b class="orange">Flags/Modifiers</b> Modifikationen des Musterungsverhaltens
             </p>
-
         </Slide>
 
         <Slide>
@@ -41,7 +40,7 @@
                 <li class="mismatch">deschutes</li>
             </ul>
             <p>
-                match den kompletten String sobald das Pattern mindestens einmal vorkommt
+                matcht den kompletten String sobald das Pattern mindestens einmal vorkommt
             </p>
         </Slide>
         <Slide>
@@ -89,7 +88,7 @@
                 <li class="mismatch">Yay!</li>
             </ul>
             <p>
-                <span class="pre">\</span> annuliert die syntaktische BEdeutung des nachfolgenden Zeichens ("escaped").
+                <span class="pre">\</span> annuliert die syntaktische Bedeutung des nachfolgenden Zeichens ("escaped").
             </p>
 
 
@@ -97,7 +96,7 @@
         <Slide>
             <h1>Escapes und besondere Zeichen (2)</h1>
             <p>
-                Alle Zeichen die in RegEx besondere Bedeutung haben, müssen escaped werden sie im zu matchenden String vorkommen.
+                Alle Zeichen die in RegEx besondere Bedeutung haben, müssen escaped werden wenn sie im zu matchenden String vorkommen.
             </p>
             <ul>
                 <li><span class="pre">\.</span></li>
@@ -110,6 +109,40 @@
             <p class="info">
                 Andernfalls werden sie als Teil der Logik verstanden und können Syntaxfehler verursachen
             </p>
+        </Slide>
+
+        <Slide>
+            <h1>Beispiele</h1>
+
+            <ul>
+
+                <li>
+                    <a href="https://regex101.com/r/IAYuHk/1">Gästeliste validieren</a>
+                    <!--<p>-->
+                        <!--/.+(Geschenk|Torte|Getränke).+/g-->
+                    <!--</p>-->
+                    <!--<div>-->
+                        <!--Henderson-->
+                        <!--Exclether (bringt Geschenk mit)-->
+                        <!--Lopez -->
+                        <!--Clinton (mit Kindern)-->
+                        <!--Madden (bringt Getränke mit)-->
+                        <!--Holler -->
+                        <!--Fierro-->
+                        <!--Nancy (Torte!!)-->
+                    <!--</div>-->
+
+                </li>
+                <li>
+                    <a href="https://regex101.com/r/KhMCDi/4">URLs validieren</a>
+                    <!--<p>-->
+                    <!--/(http|https):\/\/www\..+\.(de|com)/-->
+                    <!--</p>-->
+                    <!--<div>-->
+                    <!--http://www.google.com-->
+                    <!--</div>-->
+                </li>
+            </ul>
 
 
         </Slide>
@@ -168,22 +201,10 @@
                     whitespace character (" ")
 
 
-
-
-
-
-
-
                 </li>
                 <li>
                     <span class="pre">\w</span>
                     word character - entspricht [a-zA-Z0-9]
-
-
-
-
-
-
 
 
                 </li>
@@ -192,20 +213,8 @@
                     any digit - entspricht [0-9]
 
 
-
-
-
-
-
-
                 </li>
                 <li><span class="pre">\b</span> word boundary
-
-
-
-
-
-
 
 
                 </li>
@@ -219,9 +228,9 @@
 
             <ul v-keyframe>
                 <li><span class="pre">\S</span> alle Character ausser whitespace</li>
-                <li><span class="pre">\W</span> alle Zeichen ausser \w</li>
+                <li><span class="pre">\W</span> alle Zeichen ausser \w (Sonderzeichen etc.)</li>
                 <li><span class="pre">\D</span> alles ausser Zahlen</li>
-                <li><span class="pre">\B</span> ausser am Wortanfang oder -ende</li>
+                <li><span class="pre">\B</span> alles ausser am Wortanfang oder -ende</li>
             </ul>
 
         </Slide>
@@ -321,68 +330,6 @@
              </table>
 
          </Slide>-->
-
-
-        <Slide>
-            <h1>
-                Modifier <b>Insensitive</b>
-            </h1>
-
-            <pre>/signal/i</pre>
-            <ul>
-                <li class="match">signal</li>
-                <li class="match">Signal</li>
-            </ul>
-            <p>
-                Modifier <span class="pre">i</span> ignoriert beim matching die Groß- und Kleinschreibung des Strings
-            </p>
-
-        </Slide>
-        <Slide>
-            <h1>Modifier <b>Global</b></h1>
-            <pre>/Dumpty/g</pre>
-            <p class="block">
-                Humpty <span class="match">Dumpty</span> sat on a wall, <br>
-                Humpty <span class="match">Dumpty</span> had a great fall;
-            </p>
-            <p>
-                modifier <span class="pre">g</span> erlaubt mehrere treffer pro Pattern
-            </p>
-        </Slide>
-        <Slide>
-            <h1>Modifier <b>Multiline</b></h1>
-            <pre>/^[0-9]{5}\s\w+$/m</pre>
-
-            <ul>
-                <li class="match">85748 Garching</li>
-                <li class="mismatch">D-85748 Garching bei München</li>
-            </ul>
-
-            <p>
-                modifier <span class="pre">m</span> prüft das Pattern ausschließlich zwischen den Anchors
-            </p>
-
-
-            <table>
-                <tr>
-                    <th>Anchor</th>
-                    <th>Beschreibung</th>
-                </tr>
-                <tr>
-                    <td>^</td>
-                    <td>Anfang des Patterns</td>
-                </tr>
-                <tr>
-                    <td>$</td>
-                    <td>Ende des Patterns</td>
-                </tr>
-            </table>
-
-            <p class="info">Anchor nicht zu verwechseln mit dem Negierungszeichen <span class="pre">^</span></p>
-
-            <p class="info">man kann beliebige modifier miteinander kombinieren</p>
-
-        </Slide>
         <Slide>
             <h1>Quantifiers</h1>
 
@@ -468,10 +415,95 @@
 
             <p>
                 neben <span class="pre">+</span> und <span class="pre">{min,max}</span>
-                existieren weitere quantifiers um die Anzahl der zu matchenden Vorkomnisse zu bestimmen
-
+                existieren weitere quantifiers um die Anzahl der zu matchenden Zeichen zu bestimmen
             </p>
         </Slide>
+        <Slide>
+            <h1>Beispiele (2)</h1>
+
+            <ul>
+                <li>
+                    <a href="https://regex101.com/r/FBgrg6/3">E-Mails validieren</a>
+                    <!--<p>[\w\.|-]+@\w+(\.\w{2,3})?\.\w{2,}</p>-->
+                    <!--<div>-->
+                        <!--alexey@utin.com-->
+                        <!--alexey.utin@catbirdseat.de-->
+                        <!--hank@indiaonline.co.uk-->
+                        <!--nom@gimme.pizza-->
+                    <!--</div>-->
+                </li>
+                <li>
+                    <a href="https://regex101.com/r/4nx0Lw/1/">IPs validieren</a>
+                    <!--<p>/[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}/g</p>-->
+                    <!--<div>-->
+                        <!--87.191.168.144-->
+                    <!--</div>-->
+                </li>
+            </ul>
+
+        </Slide>
+
+        <Slide>
+            <h1>
+                Modifier <b>Insensitive</b>
+            </h1>
+
+            <pre>/signal/i</pre>
+            <ul>
+                <li class="match">signal</li>
+                <li class="match">Signal</li>
+            </ul>
+            <p>
+                Modifier <span class="pre">i</span> ignoriert beim matching die Groß- und Kleinschreibung des Strings
+            </p>
+
+        </Slide>
+        <Slide>
+            <h1>Modifier <b>Global</b></h1>
+            <pre>/Dumpty/g</pre>
+            <p class="block">
+                Humpty <span class="match">Dumpty</span> sat on a wall, <br>
+                Humpty <span class="match">Dumpty</span> had a great fall;
+            </p>
+            <p>
+                modifier <span class="pre">g</span> erlaubt mehrere treffer pro Pattern
+            </p>
+        </Slide>
+        <Slide>
+            <h1>Modifier <b>Multiline</b></h1>
+            <pre>/^[0-9]{5}\s\w+$/m</pre>
+
+            <ul>
+                <li class="match">85748 Garching</li>
+                <li class="mismatch">D-85748 Garching bei München</li>
+            </ul>
+
+            <p>
+                modifier <span class="pre">m</span> prüft das Pattern ausschließlich zwischen den Anchors
+            </p>
+
+
+            <table>
+                <tr>
+                    <th>Anchor</th>
+                    <th>Beschreibung</th>
+                </tr>
+                <tr>
+                    <td>^</td>
+                    <td>Anfang des Patterns</td>
+                </tr>
+                <tr>
+                    <td>$</td>
+                    <td>Ende des Patterns</td>
+                </tr>
+            </table>
+
+            <p class="info">Anchor nicht zu verwechseln mit dem Negierungszeichen <span class="pre">^</span></p>
+
+            <p class="info">man kann beliebige modifier miteinander kombinieren</p>
+
+        </Slide>
+
         <Slide>
             <h1>Matching Gruppen</h1>
 
@@ -491,17 +523,17 @@
             </p>
         </Slide>
         <Slide>
-            <h1>Lookaheads & Lookbehinds</h1>
+            <h1>Lookarounds</h1>
 
-            <pre>/&lt;a .+&gt;/&lt;\/a&gt;a&gt;</pre>
+            <pre>(?&lt;=&gt;)[\w\s]+(?=&lt;\/)</pre>
 
             <p class="block">
 
 
-                    &lt;a href="/clickout?regex"&gt;<span class="match">Regex for Dummies </span>&lt;/a&gt; &lt;br&gt; <br>
+                &lt;a href="/clickout?regex"&gt;<span class="match">Regex for Dummies </span>&lt;/a&gt; &lt;br&gt; <br>
 
 
-                    &lt;a href="#" alt="vue clickout" @click="clickout()" id="nextchapter"&gt;<span class="match">RegExpress yourself </span>&lt;/a&gt;  &lt;br&gt; <br>
+                &lt;a href="#" alt="vue clickout" @click="clickout()" id="nextchapter"&gt;<span class="match">RegExpress yourself </span>&lt;/a&gt;  &lt;br&gt; <br>
 
                 <span class="mismatch">
                 &lt;a href="https://regex101.com/"&gt;&lt;img src="/regularexpressions101.svg" alt="logo"&gt;&lt;/a&gt;
@@ -509,7 +541,7 @@
             </p>
 
             <p>
-                Lookaheads erlauben nach einem String zu suchen, dass erst <b>nach</b> einem Pattern vorkommt
+                Lookarounds erlauben nach Strings zu suchen, die <b>vor</b> oder <b>nach</b> einem Pattern vorkommen
             </p>
 
 
@@ -525,31 +557,109 @@
                 <tr>
                     <td>/(?=foo)/</td>
                     <td>Lookahead</td>
-                    <td>Asserts that what immediately follows the current position in the string is foo</td>
+                    <td>Alles was vor dem foo String kommen muss</td>
                 </tr>
                 <tr>
                     <td>/(?&lt;=foo)/</td>
                     <td>Lookbehind</td>
-                    <td> Asserts that what immediately precedes the current position in the string is foo</td>
+                    <td> Alles was nach dem foo String kommen muss</td>
                 </tr>
                 <tr>
                     <td>/(?!foo)/</td>
-                    <td>Lookahead</td>
-                    <td>Asserts that what immediately follows the current position in the string is not foo</td>
+                    <td>Negative Lookahead</td>
+                    <td>alles was vor einem String kommt der nicht foo ist</td>
                 </tr>
                 <tr>
                     <td>/(?<!foo)/</td>
-                    <td>Lookbehind</td>
-                    <td>Asserts that what immediately precedes the current position in the string is not foo</td>
+                    <td>Negative Lookbehind</td>
+                    <td>alles was nach einem String kommt der nicht foo ist</td>
                 </tr>
             </table>
         </Slide>
         <Slide>
-            <h1>Danke 👋</h1>
+           <h1>Beispiele (3)</h1>
+
+            <ul>
+                <li>
+                    <a href="https://regex101.com/r/rPNYjG/1">Nullterminierte Ketten</a>
+                    <!--<p>-->
+                       <!--/(?<=0)[1-9]{2,}(?=0)/g-->
+                    <!--</p>-->
+                    <!--<div>-->
+                        <!--00041800014250006042206300084598509550204209410129006-->
+                    <!--</div>-->
+                </li>
+                <li>
+                    <a href="https://regex101.com/r/lECWnS/1">Inhalte parsen</a>
+                    <!--<p>/([\w]+)\s([\w]+)$/gm</p>-->
+                    <!--<div>-->
+                        <!--datasets	AirPassengers	Monthly Airline Passenger Numbers 1949-1960	144	2	CSV	DOC-->
+                        <!--datasets	BJsales	Sales Data with Leading Indicator	150	2	CSV	DOC-->
+                        <!--datasets	BOD	Biochemical Oxygen Demand	6	2	CSV	DOC-->
+                        <!--datasets	CO2	Carbon Dioxide Uptake in Grass Plants	237	2	CSV	DOC-->
+                        <!--datasets	Formaldehyde	Determination of Formaldehyde	6	2	CSV	DOC-->
+                        <!--datasets	HairEyeColor	Hair and Eye Color of Statistics Students-->
+                    <!--</div>-->
+
+                </li>
+                <li>
+                    <a href="https://regex101.com/r/bTiKIj/1">eingerückte E-Mail Inhalte extrahieren </a>
+                    <!--<p>/(?<=^> )(?=[a-zA-Z])(.+)/gm</p>-->
+                    <!--<div>-->
+                    <!--The information entered into the Name your campaign field is what will display on the Campaigns dashboard in your account. -->
+                    <!--&gt; This information is only visible to account holders, and subscribers will not see the name of a campaign.-->
+                    <!--&gt; encourage you to use a domain -->
+                    <!--&gt; -->
+                    <!--&gt; yolo-->
+                    <!--</div>-->
+
+
+                </li>
+                <li>
+                    <a href="https://regex101.com/r/Clxcty/1">Tags auslesen</a>
+                    <!--<p>/g[\w\s]+(?=>)/g</p>-->
+                    <!--<div>-->
+                    <!--<h3>-->
+                    <!--<a href="https://codecanyon.net/item/myregexp-php-regular-expression-builder/641770" target="_self">MyRegExp</a><br>-->
+                    <!--</h3><p>This item is a PHP RegEx builder, which helps you to build Regular Expressions in an extensible PHP syntax. You can:<br></p><ol>-->
+                    <!--<li>Build Regular Expressions with an easy PHP syntax</li>-->
+                    <!--<li>Validate strings with the RegEx built</li>-->
+                    <!--<li>Build RegEx’s and get them</li>-->
+                    <!--<li>Apply preg_match to a RegEx</li>-->
+                    <!--<li>Replace a string with the RegEx built</li>-->
+                    <!--</ol><p>All that in a PHP syntax. No more broken heads trying to make basic or complex RegEx!<br></p>-->
+                    <!--<hr>-->
+                    <!--</div>-->
+
+                </li>
+                <li>
+                    <a href="https://regex101.com/r/xWoIpz/1">Tag Inhalte auslesen</a>
+                    <!--<p>/(?<=>)[\w\s]+</p>/g-->
+                    <!--<div>-->
+                    <!--<h3>-->
+                    <!--<a href="https://codecanyon.net/item/myregexp-php-regular-expression-builder/641770" target="_self">MyRegExp</a><br>-->
+                    <!--</h3><p>This item is a PHP RegEx builder, which helps you to build Regular Expressions in an extensible PHP syntax. You can:<br></p><ol>-->
+                    <!--<li>Build Regular Expressions with an easy PHP syntax</li>-->
+                    <!--<li>Validate strings with the RegEx built</li>-->
+                    <!--<li>Build RegEx’s and get them</li>-->
+                    <!--<li>Apply preg_match to a RegEx</li>-->
+                    <!--<li>Replace a string with the RegEx built</li>-->
+                    <!--</ol><p>All that in a PHP syntax. No more broken heads trying to make basic or complex RegEx!<br></p>-->
+                    <!--<hr>-->
+                    <!--</div>-->
+                </li>
+            </ul>
+
+        </Slide>
+        <Slide>
+            <h1>👌🙏👋</h1>
 
             <h2>Weitere Ressourcen:</h2>
             <ul>
-                <li></li>
+                <li>regular expression debugger with real time explanation, error detection and highlighting: <a href="https://regex101.com/">https://regex101.com/</a></li>
+                <li>online tool to learn, build, & test Regular Expressions: <a href="http://regexr.com/">http://regexr.com/</a></li>
+                <li>JavaScript Regular Expression Visualizer: <a href="https://jex.im/regulex/">https://jex.im/regulex/</a></li>
+                <li>Learn Regular Expressions with simple, interactive exercises.: <a href="https://regexone.com/">https://regexone.com/</a></li>
             </ul>
         </Slide>
 

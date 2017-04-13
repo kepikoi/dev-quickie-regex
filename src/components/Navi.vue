@@ -1,10 +1,10 @@
 <template>
     <nav id="navi">
-        <div class="prev button" @click="_prevPage()">prev</div>
+        <div class="prev button" @click="_prevPage()">←</div>
         <div class="nr">
             {{pageNr}}
         </div>
-        <div class="next button" @click="_nextPage()">next</div>
+        <div class="next button" @click="_nextPage()">→</div>
 
     </nav>
 </template>
